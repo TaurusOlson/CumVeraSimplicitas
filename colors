@@ -1,0 +1,10 @@
+export TXTUND=$(tput sgr 0 1)    # Underline
+export TXTBLD=$(tput bold)       # Bold
+export TXTRED=$(tput setaf 1)    # Red
+export TXTGRN=$(tput setaf 2)    # Green
+export TXTYLW=$(tput setaf 3)    # Yellow
+export TXTBLU=$(tput setaf 4)    # Blue
+export TXTPUR=$(tput setaf 5)    # Purple
+export TXTCYN=$(tput setaf 6)    # Cyan
+export TXTWHT=$(tput setaf 7)    # White
+export TXTRST=$(tput sgr0)       # Text reset

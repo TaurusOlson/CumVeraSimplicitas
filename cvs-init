@@ -1,0 +1,18 @@
+#!/bin/bash
+# ------------------------------------------------
+# Filename   : cvs-init
+# Date       : 2010-12-08
+# Author     : Taurus Olson
+# Email      : <taurusolson@gmail.com>
+# Last Change: Mer déc 08 06:00  2010 C
+# ------------------------------------------------
+
+set -e
+
+if [[ -n $CVSROOT ]]; then
+    cvs -d $CVSROOT init
+else
+    echo "Sorry, but I can't find the CVSROOT variable. Check that you have set
+    it."
+fi
+

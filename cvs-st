@@ -1,0 +1,21 @@
+#!/bin/bash
+
+set -e
+
+. colors
+
+# Definition of the patterns to colorize
+STA_REGEX='\(Status:\)'
+STA_COLOR="${TXTRED}\1${TXTRST}"
+
+UTD_REGEX='\(Up-to-date\)'
+UTD_COLOR="${TXTBLU}\1${TXTRST}"
+
+LRM_REGEX='\(Locally Removed\)'
+LRM_COLOR="${TXTGRN}\1${TXTRST}"
+
+# Substitution
+cvs status "$@" | sed "s/${STA_REGEX}/${STA_COLOR}/
+s/${UTD_REGEX}/${UTD_COLOR}/
+s/${LRM_REGEX}/${LRM_COLOR}/"
+

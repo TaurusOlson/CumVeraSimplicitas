@@ -1,0 +1,24 @@
+#!/bin/bash
+# ------------------------------------------------
+# Filename   : cvs-import.sh
+# Date       : 2010-12-08
+# Author     : Taurus Olson
+# Email      : <taurusolson@gmail.com>
+# Last Change: Mer déc 08 06:00  2010 C
+# ------------------------------------------------
+
+set -e
+
+cat <<EOF
+
+cvs import usage:
+
+cd path_to_dir
+cvs import -m 'A message I feel like attaching' path_to_dir Vtag Rtag
+
+path_to_dir: The name of the directory you want to import 
+Vtag: the vendor tag (authorship, ownership)
+Rtag: the Release tag (ex: start)
+
+EOF
+
