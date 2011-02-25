@@ -8,3 +8,32 @@ export TXTPUR=$(tput setaf 5)    # Purple
 export TXTCYN=$(tput setaf 6)    # Cyan
 export TXTWHT=$(tput setaf 7)    # White
 export TXTRST=$(tput sgr0)       # Text reset
+
+export ESC="\033["
+
+export FG_BLACK=${ESC}30m      # black foreground
+export FG_RED=${ESC}31m        # red foreground
+export FG_GREEN=${ESC}32m      # green foreground
+export FG_BROWN=${ESC}33m      # brown foreground
+export FG_BLUE=${ESC}34m       # blue foreground
+export FG_PURPLE=${ESC}35m     # purple foreground
+export FG_CYAN=${ESC}36m       # light blue foreground
+export FG_GRAY=${ESC}37m       # gray foreground
+
+export BG_BLACK=${ESC}40m      # black background
+export BG_RED=${ESC}41m        # red background
+export BG_GREEN=${ESC}42m      # green background
+export BG_BROWN=${ESC}43m      # brown background
+export BG_BLUE=${ESC}44m       # blue background
+export BG_PURPLE=${ESC}45m     # purple background
+export BG_CYAN=${ESC}46m       # light blue background
+export BG_GRAY=${ESC}47m       # white background
+
+export BOLD_ON=${ESC}1m    # turn on bolding
+export BOLD_OFF=${ESC}22m  # turn off bolding
+export BLINK_ON=${ESC}5m   # turn on blinking
+export BLINK_OFF=${ESC}25m # turn off blinking
+export VID_ON=${ESC}7m     # turn on reverse video
+export VID_OFF=${ESC}27m   # turn off reverse video
+export DEFAULT=${ESC}0m    # reset everything to default
+
