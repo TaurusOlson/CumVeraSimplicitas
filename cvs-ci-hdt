@@ -1,0 +1,74 @@
+#!/bin/bash
+# ------------------------------------------------
+# Filename   : cvs-ci-hdt
+# Date       : 2011-14-06
+# Author     : Taurus Olson
+# Email      : <taurusolson@gmail.com>
+# Last Change: Mar jul 19 05:00  2011 C
+# ------------------------------------------------
+
+# Description: cvs-ci-hdt is a tool to commit to the hifi_dp_tools module
+# Usage: cvs-ci-hdt TAGNUMBER COMMIT_MSG FILES
+# Example: cvs-ci-hdt 0_100 'HIFI-XXXX: Resolved issue.' file2.txt
+# is equivalent to cvs commit -m 'D_HIFI_DP_TOOLS_0_100: Resolved issue.' file1.txt CHANGELOG
+
+set -e
+
+. colors
+
+new_tag_number() {
+    local current_tag_number=$(head -2 CHANGELOG | grep HIFI_DP_TOOLS | cut -c 17-21)
+    local major=$(echo $current_tag_number | cut -d _ -f 1)
+    local minor=$(echo $current_tag_number | cut -d _ -f 2)
+    local new_tag_number="$major"_"$((minor+1))"
+    echo $new_tag_number
+}
+
+
+usage() {
+    cat <<EOF
+cvs-ci-hdt - A tool to commit to the hifi_dp_tools module
+
+Usage: cvs-ci-hdt TAGNUMBER COMMIT_MSG FILES
+
+Example: cvs-ci-hdt 0_100 'HIFI-XXXX: Resolved issue.'
+is equivalent to 
+cvs commit -m 'D_HIFI_DP_TOOLS_0_100: HIFI-XXXX: Resolved issue.'
+
+EOF
+exit 0
+}
+
+if [[ $# -lt 3 ]]; then
+    usage
+fi
+
+if [[ $# -ge 3 ]]; then
+    TAGNUMBER=$1; shift
+    COMMIT_MSG=$1; shift
+    FILES="$@"
+
+    if [[ ! $(echo $TAGNUMBER | grep _) ]]; then
+        echo "Please type a correct tag number (ex: 0_100)"
+        echo "Request aborted."
+        exit 0
+    fi
+
+    if [[ $TAGNUMBER = $(new_tag_number) ]]; then
+        echo "${TXTRED}* tag           :${TXTRST} D_HIFI_DP_TOOLS_$TAGNUMBER" 
+        echo "${TXTRED}* commit message:${TXTRST} $COMMIT_MSG"
+        echo "${TXTRED}* files modified:${TXTRST} $FILES CHANGELOG"
+        read -p "Are you satisfied? [y/n] " choice
+
+        if [ "$choice" = "y" ]; then
+            cvs commit -m 'D_HIFI_DP_TOOLS_$TAGNUMBER: $COMMIT_MSG' $FILES CHANGELOG
+        else
+            echo "Aborting."
+        fi
+    else
+        echo "TAGNUMBER is $TAGNUMBER. It should be $(new_tag_number)."
+        echo "Request aborted."
+        exit 0
+    fi
+fi
+
