@@ -13,4 +13,4 @@ WF_COLOR="${TXTBLU}\1${TXTRST}"
 
 # Substitution
 cvs log "$@" | sed "s/${REV_REGEX}/${REV_COLOR}/
-s/${WF_REGEX}/${WF_COLOR}/"
+s/${WF_REGEX}/${WF_COLOR}/" | less -R
