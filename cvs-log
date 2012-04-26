@@ -5,10 +5,10 @@ set -e
 . colors
 
 # Definition of the patterns to colorize
-REV_REGEX='\(^revision\s[0-9\.]*\)'
+REV_REGEX='\(^revision[[:space:]][0-9\.]*\)'
 REV_COLOR="${TXTRED}\1${TXTRST}"
 
-WF_REGEX='\(^Working file:\s[a-zA-Z_\/\.]*\)'
+WF_REGEX='\(^Working file: [a-zA-Z0-9\._]*\)'
 WF_COLOR="${TXTBLU}\1${TXTRST}"
 
 # Substitution
