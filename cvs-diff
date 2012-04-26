@@ -4,4 +4,4 @@ set -e
 
 . colors
 
-cvs diff "$@" | colordiff
+cvs diff "$@" | colordiff | less -R
