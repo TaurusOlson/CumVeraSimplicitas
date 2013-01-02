@@ -1,0 +1,16 @@
+#!/bin/bash
+
+set -e
+
+function usage () {
+    cat <<EOF
+$(basename $0) - Go back to a previous version of a file
+
+Usage: $(basename $0) <rev> <file>
+
+EOF
+exit 0
+}
+
+[ $# -ne 2 ] && usage && exit 1
+[ -f $2 ] && cvs update -r $1 $2 && echo "Revert $2 to revision $1"
